@@ -14,10 +14,13 @@ export class UsersService {
   ) {}
 
   // register user
-  async register(registerDto: RegisterDto) {
+  async register(registerDto: RegisterDto, response: Response) {
     const { name, email, password } = registerDto;
-    const user = { id: '1', name, email, password };
-    return user;
+    const user = await this.prisma.user.create({
+      data: { name, email, password },
+    });
+
+    return { user, response };
   }
 
   // login
