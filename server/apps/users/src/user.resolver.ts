@@ -12,7 +12,7 @@ export class UsersResolver {
   async register(
     @Args('registerDto') registerDto: RegisterDto,
     @Context() context: { res: Response },
-  ): Promise<RegisterResponse> {
+  ) {
     const user = await this.userService.register(registerDto, context.res);
     return { user };
   }
